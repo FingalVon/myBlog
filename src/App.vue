@@ -6,18 +6,20 @@
         <router-view/>
       </div>
     </body-page>
+    <footer-page id="footerPage"></footer-page>
   </div>
 </template>
 
 <script>
 import headerPage from './components/header/index.vue'
 import bodyPage from './components/body/index.vue'
+import footerPage from './components/footer/index.vue'
 export default {
-  components:{headerPage,bodyPage},
+  components:{headerPage,bodyPage,footerPage},
   name: 'App',
   data() {
       return {
-          bodyHeight: document.documentElement.clientHeight - 20,
+          bodyHeight: document.documentElement.clientHeight - 60,
           // bodyTop: 10
       }
   },
@@ -28,8 +30,9 @@ export default {
       window.onresize = () => {
           this.screenHeight = document.documentElement.clientHeight;
           let bodyH = document.getElementById('bodyPage').offsetHeight || 0;
+          let footerH = document.getElementById('footerPage').offsetHeight || 0;
           if(document.documentElement.clientHeight > bodyH) {
-              this.bodyHeight = document.documentElement.clientHeight - 20;
+              this.bodyHeight = document.documentElement.clientHeight - 20 - footerH;
           }
       };
   },

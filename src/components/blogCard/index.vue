@@ -1,5 +1,5 @@
 <template>
-    <div style="cursor:pointer">
+    <div style="cursor:pointer" @click="toDetail">
         <el-card shadow="hover" class="blog-card">
             <div slot="header">
                 <el-row>
@@ -24,6 +24,7 @@
             </div>
             <div v-if="pic.length">
                 <!-- 图片展示 -->
+                <img src="../../assets/logo.png" />
             </div>
             <p style="text-align:left">{{content}}</p>
         </el-card>
@@ -49,7 +50,13 @@
             date:{
                 type:String
             }
+        },
+      methods: {
+        toDetail() {
+          // 去详情页，也就是跳转一个路由
+          this.$router.push('/detail');
         }
+      }
     }
 </script>
 <style scoped>
@@ -57,6 +64,8 @@
         height:400px;
         width:100%;
         margin-bottom:30px;
+        padding:40px 80px;
+        box-sizing: border-box;
     }
 </style>
 
