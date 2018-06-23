@@ -1,4 +1,4 @@
-# blog
+# myBlog
 
 > A Vue.js project
 
