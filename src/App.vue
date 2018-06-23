@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <header-page id="headerPage"></header-page>
-    <body-page id="bodyPage" :body-height="bodyHeight">
+    <body-page id="bodyPage" :body-height="bodyHeight" :hide-left="hideLeft">
       <div slot="bodyright">
         <router-view/>
       </div>
     </body-page>
-    <footer-page id="footerPage"></footer-page>
+    <footer-page id="footerPage" :style="{top:bodyHeight + 20 + 'px'}"></footer-page>
   </div>
 </template>
 
@@ -19,23 +19,39 @@ export default {
   name: 'App',
   data() {
       return {
-          bodyHeight: document.documentElement.clientHeight - 60,
-          // bodyTop: 10
+          bodyHeight: 0,
+          hideLeft: false
       }
   },
-  // updated() {
-  //     this.bodyTop = document.getElementById('headerPage').offsetHeight + document.getElementById('headerPage').style.top + 10;
-  // },
+  watch:{
+    '$route.fullPath': {
+      handler: function(n) {
+        this.hideLeft = false;
+        if(n == '/' || n == '/detail') {
+          this.$nextTick(() => {
+            this.resizeBody();
+          })
+          if(n == '/detail') {
+            this.hideLeft = true;
+          }
+        };
+      },
+      immediate: true
+    }
+  },
   mounted() {
       window.onresize = () => {
-          this.screenHeight = document.documentElement.clientHeight;
-          let bodyH = document.getElementById('bodyPage').offsetHeight || 0;
-          let footerH = document.getElementById('footerPage').offsetHeight || 0;
-          if(document.documentElement.clientHeight > bodyH) {
-              this.bodyHeight = document.documentElement.clientHeight - 20 - footerH;
-          }
+        this.resizeBody();
       };
   },
+  methods:{
+    resizeBody() {
+      this.screenHeight = document.documentElement.clientHeight;
+      let bodyH = document.getElementById('bodyRight').offsetHeight || 0;
+      let footerH = document.getElementById('footerPage').offsetHeight || 0;
+      this.bodyHeight = document.documentElement.clientHeight > bodyH ? document.documentElement.clientHeight - 20 - footerH : bodyH;
+    }
+  }
 }
 </script>
 

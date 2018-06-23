@@ -18,5 +18,6 @@
     height: 40px;
     width: 100%;
     box-sizing: border-box;
+    background-color: rgba(255,255,255,0.2);
   }
 </style>

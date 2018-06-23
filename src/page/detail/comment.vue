@@ -6,8 +6,7 @@
         style="margin-top:20px"
         type="textarea"
         :rows="2"
-        placeholder="请输入内容"
-        v-model="textarea">
+        placeholder="请输入内容">
       </el-input>
     </el-card>
   </div>
@@ -22,7 +21,7 @@
 <style scoped>
   .box-card {
     text-align: left;
-    margin: 50px auto 0 auto; /*上、右、下、左、*/
-    width: 80%;
+    margin: 50px auto 30px auto; /*上、右、下、左、*/
+    width: 60%;
   }
 </style>

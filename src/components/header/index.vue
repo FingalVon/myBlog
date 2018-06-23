@@ -11,7 +11,7 @@
 
 <style scoped>
     .t-header {
-        position:absolute;
+        position: fixed;;
         width:100%;
         height:40px;
         top:-30px;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="box-card">
-      <div v-for="o in 20" :key="o" class="text item">
+      <div v-for="o in 60" :key="o" class="text item">
         {{'列表内容 ' + o }}
       </div>
     </el-card>
@@ -10,13 +10,13 @@
 
 <script>
   export default {
-    name: "index"
+    name: "detail"
   }
 </script>
 
 <style scoped>
   .box-card {
     margin: 0 auto;
-    width: 80%;
+    width: 60%;
   }
 </style>

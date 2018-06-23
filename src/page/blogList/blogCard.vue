@@ -39,7 +39,7 @@
             },
             pic:{
                 type:Array,
-                default:[]
+                default:() => {return []}
             },
             content:{
                 type:String,

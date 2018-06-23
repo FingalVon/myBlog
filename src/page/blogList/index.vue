@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-    import blogCard from '@/components/blogCard/index.vue'
+    import blogCard from './blogCard.vue'
     export default {
         components:{blogCard}
     }
