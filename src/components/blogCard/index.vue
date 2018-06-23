@@ -8,7 +8,7 @@
                     </el-col>
                     <el-col :span="4">
                         <el-dropdown style="float:right; margin:30px 20px 0 0">
-                            <span class="el-dropdown-link">操作</span>
+                            <span class="el-dropdown-link" style="color:#409EFF">操作</span>
                             <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item>编辑</el-dropdown-item>
                                 <el-dropdown-item>删除</el-dropdown-item>
