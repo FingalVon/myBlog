@@ -18,4 +18,9 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## vue项目目录结构介绍
+
+> myblog  
+> App.vue vue入口
+> index.html 项目入口文件，引用公共的资源，如：可以引入bootstrap.css文件等
+
