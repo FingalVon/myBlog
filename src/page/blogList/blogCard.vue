@@ -4,8 +4,8 @@
             <div slot="header">
                 <el-button @click="testAxios">testAxios</el-button>
                 <el-row>
-                    <el-col :span="20" style="cursor:pointer" @click="toDetail">
-                        <h2 style="text-align:left">{{title}}</h2>
+                    <el-col :span="20">
+                        <h2 style="cursor:pointer;text-align:left" @click="toDetail">{{title}}</h2>
                     </el-col>
                     <el-col :span="4">
                         <el-dropdown style="float:right; margin:30px 20px 0 0">
