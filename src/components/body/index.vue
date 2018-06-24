@@ -7,7 +7,7 @@
     </div>
 </template>
 <script>
-    import bodyLeft from './body-left.vue';
+    import bodyLeft from './body-left/body-left.vue';
     export default {
         components:{bodyLeft},
         props:{
