@@ -31,9 +31,6 @@ export default {
           this.$nextTick(() => {
             this.resizeBody();
           })
-          if(n == '/detail') {
-            this.hideLeft = true;
-          }
         };
       },
       immediate: true
