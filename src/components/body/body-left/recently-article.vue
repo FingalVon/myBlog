@@ -23,8 +23,8 @@
 
 <style scoped>
   .recentlyArticle {
-    width: 80%;
-    margin: auto 70px;
+    width: 70%;
+    margin: auto 170px;
     text-align: left;
   }
 

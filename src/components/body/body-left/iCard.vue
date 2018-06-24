@@ -1,5 +1,5 @@
 <template>
-    <div class="i-card">
+    <div class="i-card" style="cursor: pointer" @click="backHome">
         <img id="iCard-img" :style="{height:imgH}" :src="imgUrl" />
         <div class="user-name">{{userName}}</div>
     </div>
@@ -14,10 +14,15 @@
         },
         data() {
             return {
-                imgUrl:'http://img2.imgtn.bdimg.com/it/u=3547200263,2157911065&fm=27&gp=0.jpg',
+                imgUrl:'static/default.png',
                 userName:'金闪闪'
             }
         },
+      methods: {
+        backHome() {
+          this.$router.push('/');
+        }
+      }
     }
 </script>
 <style scoped>

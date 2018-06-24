@@ -17,5 +17,10 @@ export default new Router({
       name: 'detail',
       component: Detail
     },
+    {
+      path: '/edit',
+      name: 'editArticle',
+      component: EditArticle
+    }
   ]
 })
