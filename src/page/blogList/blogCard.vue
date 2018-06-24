@@ -1,14 +1,15 @@
 <template>
-    <div style="cursor:pointer" @click="toDetail">
-        <el-card shadow="hover" class="blog-card">
+    <div>
+        <el-card class="blog-card">
             <div slot="header">
+                <el-button @click="testAxios">testAxios</el-button>
                 <el-row>
-                    <el-col :span="20">
+                    <el-col :span="20" style="cursor:pointer" @click="toDetail">
                         <h2 style="text-align:left">{{title}}</h2>
                     </el-col>
                     <el-col :span="4">
                         <el-dropdown style="float:right; margin:30px 20px 0 0">
-                            <span class="el-dropdown-link" style="color:#409EFF">操作</span>
+                            <span class="operation-btn">操作</span>
                             <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item>编辑</el-dropdown-item>
                                 <el-dropdown-item>删除</el-dropdown-item>
@@ -17,7 +18,7 @@
                         </el-dropdown>
                     </el-col>
                 </el-row>
-                <el-row style="height:14px; color:#909399;text-align:left">
+                <el-row style="height:12px; color:#909399;text-align:left">
                     <span v-if="tags">{{'标签：'+tags}}</span>
                     <span style="margin-left:10px">{{date}}</span>
                 </el-row>
@@ -55,6 +56,11 @@
         toDetail() {
           // 去详情页，也就是跳转一个路由
           this.$router.push('/detail');
+        },
+        testAxios() {
+            this.$axios({method:'get',url:'http://192.168.2.221:9000/api/blog/blog_article/'+'123'}).then(res => {
+                console.log(">>>>>>>>>>>>>>",res.data.data)
+            })
         }
       }
     }
@@ -66,6 +72,18 @@
         margin-bottom:30px;
         padding:40px 80px;
         box-sizing: border-box;
+        box-shadow: 0 0 10px rgba(0,0,0,.1);
+    }
+    .blog-card:hover {
+        box-shadow: 0 0 15px rgba(0,0,0,.3);
+    }
+    .operation-btn {
+        color:#409EFF; 
+        font-size:16px; 
+        cursor:default;
+    }
+    .operation-btn:hover {
+        color: rgba(64,158,255,.8);
     }
 </style>
 

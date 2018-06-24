@@ -2,9 +2,9 @@
   <div class="recentlyArticle">
     <el-input
       style="margin-bottom: 25px; width: 80%"
-      placeholder="请输入内容"
+      placeholder="输入关键字搜索"
       prefix-icon="el-icon-search"
-      v-model="input21"></el-input>
+      v-model="keyWord"></el-input>
     <div style="font-size: 20px; font-weight: bolder">近期文章</div>
     <ul style="padding-left: 5px; padding-right:20%;">
       <li v-for="o in 5" :key="o" class="articleTitle">
@@ -17,14 +17,19 @@
 
 <script>
   export default {
-    name: "recently-article"
+    name: "recently-article",
+    data() {
+      return {
+        keyWord:'',
+      }
+    }
   }
 </script>
 
 <style scoped>
   .recentlyArticle {
     width: 70%;
-    margin: auto 170px;
+    margin: auto auto auto 24%;
     text-align: left;
   }
 

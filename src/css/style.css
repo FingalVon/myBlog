@@ -1,3 +1,7 @@
+a,button,input {
+    outline: none;
+}
+
 .el-button {
     margin-right: 10px !important;
 }

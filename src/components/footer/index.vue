@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    1233231213
+    版权所有：Duke、Fingal
   </div>
 </template>
 
@@ -17,7 +17,9 @@
     left: 0;
     height: 40px;
     width: 100%;
+    padding-top:5px;
     box-sizing: border-box;
+    color:#909399;
     background-color: rgba(255,255,255,0.2);
   }
 </style>
