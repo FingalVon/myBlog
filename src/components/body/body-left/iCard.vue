@@ -14,7 +14,8 @@
         },
         data() {
             return {
-                imgUrl:'http://img2.imgtn.bdimg.com/it/u=3547200263,2157911065&fm=27&gp=0.jpg',
+                imgUrl:"static/favicon.ico",
+                // imgUrl:'http://img2.imgtn.bdimg.com/it/u=3547200263,2157911065&fm=27&gp=0.jpg',
                 userName:'金闪闪'
             }
         },
@@ -26,7 +27,7 @@
         margin:40px auto;
     }
     .i-card img {
-        width:50%;
+        width:40%;
         border-radius: 50%;
     }
     .user-name {
