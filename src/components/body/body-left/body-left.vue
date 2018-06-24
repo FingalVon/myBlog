@@ -1,12 +1,14 @@
 <template>
     <div class="body-left" id="bodyLeft" :style="{height:bodyLeftH}">
         <i-card :img-h="imgH"></i-card>
+        <recently-article></recently-article>
     </div>
 </template>
 <script>
     import iCard from './iCard.vue';
+    import recentlyArticle from './recently-article.vue';
     export default {
-        components:{iCard},
+        components:{iCard,recentlyArticle},
         props:{
             'img-h':{
                 type:String,
