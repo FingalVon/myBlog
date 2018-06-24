@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Detail from '@/page/detail/index'
 import BlogList from '@/page/blogList/index'
+import EditArticle from  '@/page/editArticle/index'
 
 Vue.use(Router)
 
