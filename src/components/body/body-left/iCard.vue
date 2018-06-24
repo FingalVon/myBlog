@@ -31,7 +31,7 @@
         margin:40px auto;
     }
     .i-card img {
-        width:50%;
+        width:40%;
         border-radius: 50%;
     }
     .user-name {
