@@ -1,7 +1,7 @@
 <template>
     <div class="body-content" :style="{height:bodyHeight ? bodyHeight+'px' : bodyHeight}">
-        <body-left :style="{width:(screenWidth>900 && !hideLeft)?'30%':'0'}"></body-left>
-        <div class="body-right" id="bodyRight" :style="{width:screenWidth>900?'69%':'100%', 'margin-left':(screenWidth>900 && !hideLeft)?'30%':'0'}">
+        <body-left :img-h="imgH" style="width:30%" v-if="bodyWidth > 900"></body-left>
+        <div class="body-right" id="bodyRight" :style="{width:bodyWidth>900?'69%':'100%', 'margin-left':(bodyWidth>900 && !hideLeft)?'30%':'0'}">
             <slot name="bodyright"></slot>
         </div>
     </div>
@@ -18,17 +18,20 @@
             'hide-left':{
                 type:Boolean,
                 default:false
+            },
+            'body-width':{
+                type:Number,
+                default:901
+            },
+            'img-h':{
+                type:String,
+                default:'30px'
             }
         },
         data() {
             return {
-                screenWidth: document.documentElement.clientWidth,
+                
             }
-        },
-        mounted() {
-            window.onresize = () => {
-                this.screenWidth = document.documentElement.clientWidth;
-            };
         },
         methods:{
 

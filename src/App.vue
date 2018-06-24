@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header-page id="headerPage"></header-page>
-    <body-page id="bodyPage" :body-height="bodyHeight" :hide-left="hideLeft">
+    <body-page id="bodyPage" :body-height="bodyHeight" :hide-left="hideLeft" :body-width="bodyWidth" :img-h="imgH">
       <div slot="bodyright">
         <router-view/>
       </div>
@@ -20,7 +20,10 @@ export default {
   data() {
       return {
           bodyHeight: 0,
-          hideLeft: false
+          hideLeft: false,
+          resizeOver: true,
+          bodyWidth: document.documentElement.clientWidth,
+          imgH:'30px',
       }
   },
   watch:{
@@ -37,8 +40,16 @@ export default {
     }
   },
   mounted() {
+      this.imgH = (document.getElementById('iCard-img') ? document.getElementById('iCard-img').clientWidth : 30 ) + 'px';
       window.onresize = () => {
-        this.resizeBody();
+        if(!this.resizeOver) return;
+        return (() => {
+          this.resizeOver = false;
+          this.resizeBody();
+          setTimeout(() => {
+              this.resizeOver = true;
+          },50)
+        })();
       };
   },
   methods:{
@@ -47,6 +58,8 @@ export default {
       let bodyH = document.getElementById('bodyRight').offsetHeight || 0;
       let footerH = document.getElementById('footerPage').offsetHeight || 0;
       this.bodyHeight = document.documentElement.clientHeight > bodyH ? document.documentElement.clientHeight - 20 - footerH : bodyH;
+      this.bodyWidth = document.documentElement.clientWidth || 0;
+      this.imgH = (document.getElementById('iCard-img') ? document.getElementById('iCard-img').clientWidth : 30 ) + 'px';
     }
   }
 }

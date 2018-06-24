@@ -1,10 +1,18 @@
 <template>
     <div class="body-left" id="bodyLeft" :style="{height:bodyLeftH}">
-        aaaaaaaaaaaa
+        <i-card :img-h="imgH"></i-card>
     </div>
 </template>
 <script>
+    import iCard from './iCard.vue';
     export default {
+        components:{iCard},
+        props:{
+            'img-h':{
+                type:String,
+                default:'30px'
+            }
+        },
         data() {
             return {
                 bodyLeftH: '100%'
