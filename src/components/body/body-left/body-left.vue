@@ -1,10 +1,14 @@
 <template>
     <div class="body-left" id="bodyLeft" :style="{height:bodyLeftH}">
-        aaaaaaaaaaaa
+      <recently-article></recently-article>
     </div>
 </template>
 <script>
+    import recentlyArticle from './recently-article.vue';
     export default {
+        components: {
+          recentlyArticle
+        },
         data() {
             return {
                 bodyLeftH: '100%'
