@@ -104,7 +104,7 @@
       loadAll() {
         // 这是一个异步的请求
         let result = new Promise((resolve, reject) => {
-          this.$axios({method: 'get', url: 'http://localhost:9000/api/blog/blog_label'}).then(res => {
+          this.$axios({method: 'get', url: 'http://192.168.2.204:9000/api/blog/blog_label'}).then(res => {
             if(res.status == 200) {
               resolve(res.data);
             } else {
@@ -148,6 +148,7 @@
     },
     mounted() {
       this.loadAll().then(data => {
+        console.log(">>>>>>>>>>>>>>",data.data)
         this.allLabels = data.data;
       });
     }
