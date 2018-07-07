@@ -15,6 +15,17 @@
                 default:'30px'
             }
         },
+        computed: {
+            aaa: function() {
+                let a = window.sessionStorage.getItem('bodyH') || 0;
+                return a;
+            }
+        },
+        watch:{
+            aaa: function(n) {
+                console.log("<<<<<<<<<<<<<<",n)
+            }
+        },
         data() {
             return {
                 bodyLeftH: '100%'

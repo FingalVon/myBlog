@@ -34,6 +34,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     host: HOST || config.dev.host,
     port: PORT || config.dev.port,
     open: config.dev.autoOpenBrowser,
+    // openPage: 'http://localhost:'+ (PORT || config.dev.port),
     overlay: config.dev.errorOverlay
       ? { warnings: false, errors: true }
       : false,
@@ -42,6 +43,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+      ignored: /node_modules/,
     }
   },
   plugins: [

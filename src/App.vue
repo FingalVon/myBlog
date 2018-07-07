@@ -1,11 +1,14 @@
 <template>
   <div id="app">
+    <!-- 页面的header部分 -->
     <header-page id="headerPage"></header-page>
+    <!-- 页面的body部分，其中又分了bodyLeft和bodyRight -->
     <body-page id="bodyPage" :body-height="bodyHeight" :hide-left="hideLeft" :body-width="bodyWidth" :img-h="imgH">
       <div slot="bodyright">
         <router-view/>
       </div>
     </body-page>
+    <!-- 页面的footer部分 -->
     <footer-page id="footerPage" :style="{top:bodyHeight + 20 + 'px'}"></footer-page>
   </div>
 </template>
@@ -40,6 +43,7 @@ export default {
     }
   },
   mounted() {
+      console.log(">>>>>>>>>>",this.$store)
       this.imgH = (document.getElementById('iCard-img') ? document.getElementById('iCard-img').clientWidth : 30 ) + 'px';
       window.onresize = () => {
         if(!this.resizeOver) return;
@@ -60,6 +64,7 @@ export default {
       this.bodyHeight = document.documentElement.clientHeight > bodyH ? document.documentElement.clientHeight - 20 - footerH : bodyH;
       this.bodyWidth = document.documentElement.clientWidth || 0;
       this.imgH = (document.getElementById('iCard-img') ? document.getElementById('iCard-img').clientWidth : 30 ) + 'px';
+      window.sessionStorage.setItem('bodyH',document.getElementById('bodyRight').offsetHeight || 0)
     }
   }
 }
