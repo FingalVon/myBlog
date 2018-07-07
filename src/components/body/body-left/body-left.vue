@@ -1,6 +1,6 @@
 <template>
     <div class="body-left" id="bodyLeft" :style="{height:bodyLeftH}">
-        <i-card :img-h="imgH"></i-card>
+        <i-card></i-card>
         <recently-article></recently-article>
     </div>
 </template>
@@ -9,26 +9,9 @@
     import recentlyArticle from './recently-article.vue';
     export default {
         components:{iCard,recentlyArticle},
-        props:{
-            'img-h':{
-                type:String,
-                default:'30px'
-            }
-        },
-        computed: {
-            aaa: function() {
-                let a = window.sessionStorage.getItem('bodyH') || 0;
-                return a;
-            }
-        },
-        watch:{
-            aaa: function(n) {
-                console.log("<<<<<<<<<<<<<<",n)
-            }
-        },
         data() {
             return {
-                bodyLeftH: '100%'
+                bodyLeftH: '100%',
             }
         },
         mounted() {

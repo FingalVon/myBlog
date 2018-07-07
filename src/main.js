@@ -15,12 +15,15 @@ Vue.prototype.$axios = axios;   //在Vue实例里加入axios
 
 const store = new Vuex.Store({
   state: {
-    bodyW:0,
-    bodyH:0
+    bodyWidth:0,
+    bodyHeight:0,
+    imgH:'30px',
   },
   mutations: {
-    increment (state) {
-      state.bodyW++
+    windowChange(state,obj) {
+      state.bodyHeight = obj.bodyHeight;
+      state.bodyWidth = obj.bodyWidth;
+      state.imgH = obj.imgH;
     }
   }
 })

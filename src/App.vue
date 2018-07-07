@@ -3,13 +3,13 @@
     <!-- 页面的header部分 -->
     <header-page id="headerPage"></header-page>
     <!-- 页面的body部分，其中又分了bodyLeft和bodyRight -->
-    <body-page id="bodyPage" :body-height="bodyHeight" :hide-left="hideLeft" :body-width="bodyWidth" :img-h="imgH">
+    <body-page id="bodyPage" :hide-left="hideLeft">
       <div slot="bodyright">
         <router-view/>
       </div>
     </body-page>
     <!-- 页面的footer部分 -->
-    <footer-page id="footerPage" :style="{top:bodyHeight + 20 + 'px'}"></footer-page>
+    <footer-page id="footerPage"></footer-page>
   </div>
 </template>
 
@@ -43,8 +43,9 @@ export default {
     }
   },
   mounted() {
-      console.log(">>>>>>>>>>",this.$store)
-      this.imgH = (document.getElementById('iCard-img') ? document.getElementById('iCard-img').clientWidth : 30 ) + 'px';
+      this.$nextTick(() => {
+        this.resizeBody();
+      })
       window.onresize = () => {
         if(!this.resizeOver) return;
         return (() => {
@@ -61,10 +62,15 @@ export default {
       this.screenHeight = document.documentElement.clientHeight;
       let bodyH = document.getElementById('bodyRight').offsetHeight || 0;
       let footerH = document.getElementById('footerPage').offsetHeight || 0;
-      this.bodyHeight = document.documentElement.clientHeight > bodyH ? document.documentElement.clientHeight - 20 - footerH : bodyH;
-      this.bodyWidth = document.documentElement.clientWidth || 0;
-      this.imgH = (document.getElementById('iCard-img') ? document.getElementById('iCard-img').clientWidth : 30 ) + 'px';
-      window.sessionStorage.setItem('bodyH',document.getElementById('bodyRight').offsetHeight || 0)
+      let sBodyH = document.documentElement.clientHeight > bodyH ? document.documentElement.clientHeight - 20 - footerH : bodyH;
+      let sBodyW = document.documentElement.clientWidth || 0;
+      let sImgH = (document.getElementById('iCard-img') ? document.getElementById('iCard-img').clientWidth : sBodyW * 0.3 * 0.8 * 0.4 ) + 'px';
+      this.$store.commit('windowChange',{
+        bodyHeight:sBodyH,
+        bodyWidth:sBodyW,
+        imgH:sImgH,
+      })
+      this.bodyHeight = sBodyH;
     }
   }
 }
@@ -78,6 +84,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
