@@ -35,7 +35,7 @@
       </el-form-item>
     </el-form>
 
-    <mavon-editor style="height: 80%" @save="save" ref=md :ishljs="true"/>
+    <mavon-editor style="height: 80%" @save="save" ref="md" :ishljs="true"/>
     <el-button style="margin-top: 20px" type="primary" @click="onSubmit('blogArticle')">发布</el-button>
   </div>
 </template>
@@ -74,7 +74,7 @@
       },
       setLabel() {
         let label = this.label;
-        if(label) {
+        if (label) {
           this.blogArticle.labels.push({
             id: '',
             name: label,
@@ -93,7 +93,7 @@
         // 调用 callback 返回建议列表的数据
         results.forEach(v => {
           v.value = v.name;
-        })
+        });
         callback(results);
       },
       createFilter(str) {
@@ -105,13 +105,13 @@
         // 这是一个异步的请求
         let result = new Promise((resolve, reject) => {
           this.$axios({method: 'get', url: 'http://localhost:9000/api/blog/blog_label'}).then(res => {
-            if(res.status == 200) {
+            if (res.status == 200) {
               resolve(res.data);
             } else {
               reject(data);
             }
           })
-        })
+        });
         return result;
       },
       handleClose(label) {
@@ -130,16 +130,34 @@
         console.log(md);
         let mdContent = md.d_value;
         let htmlContent = md.d_render;
-        if(!mdContent) {
+        if (!mdContent) {
           // 没有写内容
         }
         this.blogArticle.mdContent = mdContent;
         this.blogArticle.htmlContent = htmlContent;
-        this.$axios({method: 'post', url: 'http://localhost:9000/api/blog/blog_article/publish', params: this.blogArticle}).then(res => {
-          console.log(res.data);
-        })
+        let params = {};
 
-        console.log(this.blogArticle);
+        let labelStr = "";
+        this.blogArticle.labels.forEach((label, i) => {
+          var labelId;
+          if(label.id === "") {
+            label.id = '';
+          } else {
+
+          }
+          labelStr += "blogLabelVMS[" + i + "].id=" + label.id + "&blogLabelVMS[" + i + "].name=" + label.name;
+        });
+        console.log(labelStr);
+
+        params = this.blogArticle;
+        params.blogLabelVMS = labelStr;
+        this.$axios({
+          method: 'post',
+          url: 'http://localhost:9000/api/blog/blog_article/publish',
+          params: params
+        }).then(res => {
+          console.log(res.data);
+        });
       },
       save(mdContent, htmlContent) {
         console.log(mdContent);
