@@ -1,11 +1,10 @@
 <template>
-    <div>
-        <el-card class="blog-card">
+    <div style="margin: 10px auto;">
+        <el-card ass="blog-card">
             <div slot="header">
-                <el-button @click="testAxios">testAxios</el-button>
                 <el-row>
                     <el-col :span="20">
-                        <h2 style="cursor:pointer;text-align:left" @click="toDetail">{{title}}</h2>
+                        <h2 style="cursor:pointer;text-align:left" @click="toDetail(id)">{{title}}</h2>
                     </el-col>
                     <el-col :span="4">
                         <el-dropdown style="float:right; margin:30px 20px 0 0">
@@ -34,6 +33,10 @@
 <script>
     export default {
         props:{
+            id: {
+                type:String,
+                required:true
+            },
             title:{
                 type:String,
                 required:true
@@ -53,13 +56,10 @@
             }
         },
       methods: {
-        toDetail() {
+        toDetail(id) {
           // 去详情页，也就是跳转一个路由
-          this.$router.push('/detail');
-        },
-        testAxios() {
-            this.$axios({method:'get',url:'http://192.168.2.221:9000/api/blog/blog_article/'+'123'}).then(res => {
-                console.log(">>>>>>>>>>>>>>",res.data.data)
+            this.$router.push({
+                path: `/detail/${id}`,
             })
         }
       }
