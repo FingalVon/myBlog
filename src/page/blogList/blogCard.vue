@@ -58,16 +58,8 @@
       methods: {
         toDetail(id) {
           // 去详情页，也就是跳转一个路由
-<<<<<<< HEAD
-          this.$router.push('/detail');
-        },
-        testAxios() {
-            this.$axios('get','http://192.168.2.221:9000/api/blog/blog_article/'+'123').then(res => {
-                console.log(">>>>>>>>>>>>>>",res.data.data)
-=======
             this.$router.push({
                 path: `/detail/${id}`,
->>>>>>> 91b393aef0f1ab30e1f9b2a48817684e70c0cea9
             })
         }
       }
