@@ -1,13 +1,21 @@
 <template>
     <div class="blog-list">
          <blog-card 
-            v-for="article in articles" :key="article.id" 
+            v-for="article in articles.list" :key="article.id" 
             :title="article.title"
             :content="article.summary" 
-            tags="技术" 
+            :tags="article.labelVMS"
             :date="article.publishDate"
             :id="article.id">
         </blog-card>
+
+        <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="1000"
+            style="margin: 40px auto;"
+            >
+        </el-pagination>
     </div>
 </template>
 <script>
@@ -21,7 +29,7 @@
         },
         created() {
             this.$axios.get('http://localhost:9000/api/blog/blog_article').then(data => {
-               let articleList = data.data.data.list;
+               let articleList = data.data.data;
                this.articles = articleList;
                console.log(this.articles);
             })

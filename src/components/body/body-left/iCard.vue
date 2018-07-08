@@ -8,8 +8,8 @@
 export default {
   data() {
     return {
-      imgUrl: "static/default.png",
-      userName: "金闪闪",
+      imgUrl: "static/33944291.jpg",
+      userName: "Duke`s Blog",
       imgH: "30px"
     };
   },

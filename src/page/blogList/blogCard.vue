@@ -7,18 +7,18 @@
                         <h2 style="cursor:pointer;text-align:left" @click="toDetail(id)">{{title}}</h2>
                     </el-col>
                     <el-col :span="4">
-                        <el-dropdown style="float:right; margin:30px 20px 0 0">
+                        <el-dropdown style="float:right; margin:30px 20px 0 0" @command="operation">
                             <span class="operation-btn">操作</span>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item>编辑</el-dropdown-item>
-                                <el-dropdown-item>删除</el-dropdown-item>
-                                <el-dropdown-item>分享</el-dropdown-item>
+                                <el-dropdown-item command="edit">编辑</el-dropdown-item>
+                                <el-dropdown-item command="delete">删除</el-dropdown-item>
+                                <el-dropdown-item command="share">分享</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-col>
                 </el-row>
                 <el-row style="height:12px; color:#909399;text-align:left">
-                    <span v-if="tags">{{'标签：'+tags}}</span>
+                    <span v-for="tag in tags" :key="tag.id" style="margin: auto 5px;">{{tag.name}}</span> |
                     <span style="margin-left:10px">{{date}}</span>
                 </el-row>
             </div>
@@ -49,7 +49,7 @@
                 type:String,
             },
             tags:{
-                type:String
+                 type:Array
             },
             date:{
                 type:String
@@ -61,6 +61,14 @@
             this.$router.push({
                 path: `/detail/${id}`,
             })
+        },
+        operation(command) {
+            if(command === "edit") {
+                this.$message('click on item ' + command);
+                this.$router.push({
+                    path: `/detail/${id}`,
+                })
+            }
         }
       }
     }
