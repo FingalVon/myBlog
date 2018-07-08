@@ -19,11 +19,10 @@
       }
     },
     created(){
-      this.$axios.get('http://192.168.2.221:9000/api/blog/blog_article/87aa6555-1c7f-4d27-9873-7ec263cb37af').then(data => {
-        console.log("ppppppppppp",data)
-        this.title = data.data.data.title;
-        this.content = data.data.data.htmlContent;
-        this.time = data.data.data.publishDate;
+      this.$axios('get','http://192.168.2.221:9000/api/blog/blog_article/87aa6555-1c7f-4d27-9873-7ec263cb37af').then(data => {
+        this.title = data.data.title;
+        this.content = data.data.htmlContent;
+        this.time = data.data.publishDate;
       })
     }
   }

@@ -58,7 +58,7 @@
           this.$router.push('/detail');
         },
         testAxios() {
-            this.$axios({method:'get',url:'http://192.168.2.221:9000/api/blog/blog_article/'+'123'}).then(res => {
+            this.$axios('get','http://192.168.2.221:9000/api/blog/blog_article/'+'123').then(res => {
                 console.log(">>>>>>>>>>>>>>",res.data.data)
             })
         }
