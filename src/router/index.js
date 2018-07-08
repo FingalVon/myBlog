@@ -14,7 +14,7 @@ export default new Router({
       component: BlogList
     },
     {
-      path: '/detail',
+      path: '/detail/:id',
       name: 'detail',
       component: Detail
     },

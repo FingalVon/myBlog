@@ -78,7 +78,6 @@ export default {
   },
   methods: {
     selectLabel(label) {
-      console.log("ppppppppppp");
       this.tagsInSelect = true;
       this.blogArticle.labels.push(label);
       this.label = "";

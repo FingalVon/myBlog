@@ -29,7 +29,7 @@
 
 <script>
   export default {
-    name: "index.vue",
+    name: "index",
     data() {
       var checkEmail = (rule, value, callback) => {
         if (value === '') {
