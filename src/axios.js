@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { Notification } from 'element-ui';
+import {backHost} from '../static/config.js'
 import Qs from 'qs';
 
 //超时时间2min
 axios.defaults.timeout = 2*60*1000;
+
+// 配置后端地址
+axios.defaults.baseURL = backHost;
 
 // 请求拦截器
 axios.interceptors.request.use(request => {
@@ -26,7 +30,8 @@ axios.interceptors.response.use(data => {
     if(data.data.status != 200) {
         console.error('错误：('+data.data.status+')'+data.data.message);
         return data.data;
-    }
+    };
+    return data.data;
 })
 
 
@@ -43,7 +48,7 @@ let fetch = (method='get',url,params,qs=true) => {
     if(Object.prototype.toString.call(url) != "[object String]") {
         console.error("错误：url错误！")
         return;
-    };S
+    };
     let axiosConfig = {
         method:method,
         url:url,

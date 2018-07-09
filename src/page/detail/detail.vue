@@ -19,7 +19,7 @@
       }
     },
     created(){
-      this.$axios('get','http://192.168.2.221:9000/api/blog/blog_article/' + this.$route.params.id).then(data => {
+      this.$axios('get','/api/blog/blog_article/' + this.$route.params.id).then(data => {
         this.title = data.data.title;
         this.content = data.data.htmlContent;
         this.time = data.data.publishDate;

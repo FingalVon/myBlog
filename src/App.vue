@@ -78,6 +78,7 @@ export default {
 
 <style>
 @import './css/style.css';
+@import './css/github-md.css';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -121,7 +121,7 @@ export default {
     loadAll() {
       // 这是一个异步的请求
       let result = new Promise((resolve, reject) => {
-        this.$axios('get', "http://192.168.2.221:9000/api/blog/blog_label").then(res => {
+        this.$axios('get', "/api/blog/blog_label").then(res => {
           if (res.status == 200) {
             resolve(res.data);
           } else {
@@ -164,7 +164,7 @@ export default {
         params[`blogLabelVMS[${i}].id`] = label.id;
         params[`blogLabelVMS[${i}].name`] = label.name;
       });
-      this.$axios('post',"http://192.168.2.221:9000/api/blog/blog_article/publish",params).then(res => {
+      this.$axios('post',"/api/blog/blog_article/publish",params).then(res => {
         console.log(res.data);
       });
     },
@@ -175,7 +175,6 @@ export default {
   },
   mounted() {
     this.loadAll().then(data => {
-      console.log(">>>>>>>>>>>>>>data", data.data);
       this.allLabels = data.data;
     });
   }

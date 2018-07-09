@@ -28,8 +28,9 @@
             }
         },
         created() {
-            this.$axios.get('http://localhost:9000/api/blog/blog_article').then(data => {
-               let articleList = data.data.data;
+            this.$axios('get','/api/blog/blog_article').then(data => {
+                console.log(">>>>>>>>>>>>",data)
+               let articleList = data.data;
                this.articles = articleList;
                console.log(this.articles);
             })
