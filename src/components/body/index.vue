@@ -1,7 +1,7 @@
 <template>
     <div class="body-content" :style="{height:bodyHeight ? bodyHeight+'px' : bodyHeight}">
-        <body-left style="width:30%" v-if="bodyWidth > 900"></body-left>
-        <div class="body-right" id="bodyRight" :style="{width:bodyWidth>900?'69%':'100%', 'margin-left':(bodyWidth>900 && !hideLeft)?'30%':'0'}">
+        <body-left :style="{width:leftWidth+'px'}" v-if="bodyWidth > 900"></body-left>
+        <div class="body-right" id="bodyRight" :style="{width:bodyWidth>900?bodyWidth - leftWidth - 10 + 'px':'100%', 'margin-left':(bodyWidth>900 && !hideLeft)?leftWidth+10+'px':'0'}">
             <slot name="bodyright"></slot>
         </div>
     </div>
@@ -22,6 +22,7 @@ export default {
       handler: function(n) {
         this.bodyHeight = n.bodyHeight;
         this.bodyWidth = n.bodyWidth;
+        this.leftWidth = n.bodyWidth * 0.3 > 400 ? 400 : n.bodyWidth * 0.3;
       },
       immediate: true,
       deep: true
@@ -31,6 +32,7 @@ export default {
     return {
         bodyHeight:'auto',
         bodyWidth:901,
+        leftWidth:380,
     };
   },
   methods: {}

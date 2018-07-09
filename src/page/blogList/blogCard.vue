@@ -1,6 +1,6 @@
 <template>
     <div style="margin: 10px auto;">
-        <el-card ass="blog-card">
+        <el-card class="blog-card" v-if="!noblog">
             <div slot="header">
                 <el-row>
                     <el-col :span="20">
@@ -28,18 +28,28 @@
             </div>
             <p style="text-align:left">{{content}}</p>
         </el-card>
+        <div v-else @click="()=>{$router.push('/edit')}">
+            <el-card class="blog-card" style="cursor:pointer; text-align:left">
+                <div slot="header">
+                    <h2>欢迎！</h2>
+                </div>
+                <p>还没有开始写博客？</p>
+                <p>点击我，开始你的第一篇博文创作。</p>
+            </el-card>
+        </div>
     </div>
 </template>
 <script>
     export default {
         props:{
+            noblog:{
+                type:Boolean
+            },
             id: {
                 type:String,
-                required:true
             },
             title:{
                 type:String,
-                required:true
             },
             pic:{
                 type:Array,
@@ -64,7 +74,6 @@
         },
         operation(command) {
             if(command === "edit") {
-                this.$message('click on item ' + command);
                 this.$router.push({
                     path: `/detail/${id}`,
                 })
@@ -80,10 +89,10 @@
         margin-bottom:30px;
         padding:40px 80px;
         box-sizing: border-box;
-        box-shadow: 0 0 10px rgba(0,0,0,.1);
+        box-shadow: 0 0 8px rgba(100,100,100,.1);
     }
     .blog-card:hover {
-        box-shadow: 0 0 15px rgba(0,0,0,.3);
+        box-shadow: 0 0 15px rgba(0,0,0,.1);
     }
     .operation-btn {
         /* color:#409EFF;  */

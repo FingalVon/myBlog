@@ -2,14 +2,16 @@
     <div class="blog-list">
          <blog-card 
             v-for="article in articles" :key="article.id" 
+            :noblog="false"
             :title="article.title"
             :content="article.summary" 
             :tags="article.labelVMS"
             :date="article.publishDate"
             :id="article.id">
         </blog-card>
-
+        <blog-card v-if="!articles.length" :noblog="true"></blog-card>
         <el-pagination
+            v-if="articles.length"
             background
             layout="prev, pager, next,jumper"
             :total="blogTotal"
