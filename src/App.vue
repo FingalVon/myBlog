@@ -71,6 +71,7 @@ export default {
         imgH:sImgH,
       })
       this.bodyHeight = sBodyH;
+      document.getElementById('footerPage').style.top = sBodyH + 20 + 'px';
     }
   }
 }

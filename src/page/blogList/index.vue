@@ -1,7 +1,7 @@
 <template>
     <div class="blog-list">
          <blog-card 
-            v-for="article in articles.list" :key="article.id" 
+            v-for="article in articles" :key="article.id" 
             :title="article.title"
             :content="article.summary" 
             :tags="article.labelVMS"
@@ -11,9 +11,11 @@
 
         <el-pagination
             background
-            layout="prev, pager, next"
-            :total="1000"
-            style="margin: 40px auto;"
+            layout="prev, pager, next,jumper"
+            :total="blogTotal"
+            :page-size="pageSize"
+            :current-page.sync="currentPage"
+            style="margin: 20px auto"
             >
         </el-pagination>
     </div>
@@ -24,15 +26,22 @@
         components:{blogCard},
         data(){
             return{
-                articles: []
+                articles: [],
+                blogTotal:0,
+                pageSize:3,
+                currentPage:1,
             }
         },
         created() {
-            this.$axios('get','/api/blog/blog_article').then(data => {
-                console.log(">>>>>>>>>>>>",data)
-               let articleList = data.data;
-               this.articles = articleList;
-               console.log(this.articles);
+            this.$axios('get','/api/blog/blog_article',{
+                page:this.currentPage,
+                size:this.pageSize,
+            }).then(data => {
+               this.articles = data.data.list;
+               this.blogTotal = data.data.total;
+               this.$nextTick(() => {
+                    this.$parent.$parent.resizeBody()
+               })
             })
         }
     }

@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      imgUrl: "static/33944291.jpg",
+      imgUrl: "static/favicon.ico",
       userName: "Duke`s Blog",
       imgH: "30px"
     };
