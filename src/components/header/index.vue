@@ -26,7 +26,7 @@
         background-color:#fff;
         border-bottom:solid 1px #fff;
         box-shadow: 0 0 8px #444;
-        transition:top 1s;
+        transition:top .5s;
     }
     .t-header:hover {
         top:0;

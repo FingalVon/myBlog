@@ -16,6 +16,7 @@
             :page-size="pageSize"
             :current-page.sync="currentPage"
             style="margin: 20px auto"
+            @current-change="getList"
             >
         </el-pagination>
     </div>
@@ -33,16 +34,21 @@
             }
         },
         created() {
-            this.$axios('get','/api/blog/blog_article',{
-                page:this.currentPage,
-                size:this.pageSize,
-            }).then(data => {
-               this.articles = data.data.list;
-               this.blogTotal = data.data.total;
-               this.$nextTick(() => {
-                    this.$parent.$parent.resizeBody()
-               })
-            })
+            this.getList();
+        },
+        methods:{
+            getList(){
+                this.$axios('get','/api/blog/blog_article',{
+                    page:this.currentPage,
+                    size:this.pageSize,
+                }).then(data => {
+                this.articles = data.data.list;
+                this.blogTotal = data.data.total;
+                this.$nextTick(() => {
+                        this.$parent.$parent.resizeBody()
+                })
+                })
+            }
         }
     }
 </script>

@@ -8,11 +8,11 @@
                     </el-col>
                     <el-col :span="4">
                         <el-dropdown style="float:right; margin:30px 20px 0 0" @command="operation">
-                            <span class="operation-btn">操作</span>
+                            <i class="el-icon-caret-bottom operation-btn"></i>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item command="edit">编辑</el-dropdown-item>
-                                <el-dropdown-item command="delete">删除</el-dropdown-item>
-                                <el-dropdown-item command="share">分享</el-dropdown-item>
+                                <el-dropdown-item style="font-size:18px" title="编辑" command="edit"><i class="el-icon-edit"></i></el-dropdown-item>
+                                <el-dropdown-item style="font-size:18px" title="删除" command="delete"><i class="el-icon-delete"></i></el-dropdown-item>
+                                <el-dropdown-item style="font-size:18px" title="分享" command="share"><i class="el-icon-share"></i></el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-col>
@@ -86,8 +86,9 @@
         box-shadow: 0 0 15px rgba(0,0,0,.3);
     }
     .operation-btn {
-        color:#409EFF; 
-        font-size:16px; 
+        /* color:#409EFF;  */
+        margin-top:-10px;
+        font-size:22px; 
         cursor:default;
     }
     .operation-btn:hover {
