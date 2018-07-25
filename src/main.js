@@ -7,11 +7,18 @@ import ElementUI from 'element-ui';
 import axios from './axios.js'
 import 'element-ui/lib/theme-chalk/index.css';
 import Vuex from 'vuex';
+import VueContextMenu from 'vue-contextmenu'
+import 'vue-contextmenu/style/css/font-awesome.min.css'
+
+
+var browserMD5File = require('browser-md5-file');
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.use(Vuex);
+Vue.use(VueContextMenu);
 Vue.prototype.$axios = axios;
+Vue.prototype.$md5file = browserMD5File;
 
 const store = new Vuex.Store({
   state: {

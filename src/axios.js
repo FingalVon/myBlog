@@ -35,7 +35,7 @@ axios.interceptors.response.use(data => {
 })
 
 
-let fetch = (method='get',url,params,qs=true) => {
+let fetch = (method='get',url,params,qs=true, upload=false) => {
     if(Object.prototype.toString.call(method) != "[object String]") {
         console.error("错误：请求方法错误！")
         return;
@@ -45,6 +45,12 @@ let fetch = (method='get',url,params,qs=true) => {
         console.error("错误：请求方法错误！")
         return;
     };
+
+    if(upload && method != 'post') {
+        console.error("错误：请求方法错误！")
+        return;
+    };
+
     if(Object.prototype.toString.call(url) != "[object String]") {
         console.error("错误：url错误！")
         return;
@@ -57,7 +63,12 @@ let fetch = (method='get',url,params,qs=true) => {
         },
         params:{},
         data:{},
+    };
+
+    if(upload) {
+        axiosConfig.headers["Content-Type"] = 'multipart/form-data';
     }
+
     if(method == 'get' || method == 'delete') {
         axiosConfig.params = params;
     } else if (method === 'post' || method === 'put') {
@@ -65,7 +76,7 @@ let fetch = (method='get',url,params,qs=true) => {
             axiosConfig.headers['Content-Type'] = 'application/json';
             axiosConfig.data = params;
         } else {
-            axiosConfig.data = qs.stringify(params)
+            axiosConfig.data = Qs.stringify(params)
         }
     };
     return new Promise((resolve, reject) => {
@@ -81,6 +92,6 @@ let fetch = (method='get',url,params,qs=true) => {
     })
 }
 
-export default (method, url, params, qs) => {
-    return fetch(method, url, params, qs)
+export default (method, url, params, qs, upload) => {
+    return fetch(method, url, params, qs, upload)
 }
