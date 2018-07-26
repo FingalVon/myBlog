@@ -1,1 +1,1 @@
-export const backHost = 'http://10.0.0.128:9000';
+export const backHost = 'http://47.97.122.119:9000';
