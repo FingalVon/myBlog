@@ -4,9 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
-import axios from './axios.js'
+import axios from './axios.js';
 import 'element-ui/lib/theme-chalk/index.css';
 import Vuex from 'vuex';
+import './css/mavon-editor.styl';
 // import VueContextMenu from 'vue-contextmenu'
 // import 'vue-contextmenu/style/css/font-awesome.min.css'
 

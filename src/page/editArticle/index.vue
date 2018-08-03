@@ -147,6 +147,7 @@ export default {
       console.log(md);
       let mdContent = md.d_value;
       let htmlContent = md.d_render;
+      this.getNavigation(md);
       if (!mdContent) {
         // 没有写内容
       }
@@ -164,9 +165,9 @@ export default {
         params[`blogLabelVMS[${i}].id`] = label.id;
         params[`blogLabelVMS[${i}].name`] = label.name;
       });
-      this.$axios('post',"/api/blog/blog_article/publish",params).then(res => {
-        console.log(res.data);
-      });
+      // this.$axios('post',"/api/blog/blog_article/publish",params).then(res => {
+      //   console.log(res.data);
+      // });
     },
     save(mdContent, htmlContent) {
       console.log(mdContent);
@@ -186,6 +187,23 @@ export default {
           _this.$message({type: json.status, message: json.msg});
         }
       });
+    },
+    getNavigation(md) {
+      let reg = /^H[1-6]{1}$/;
+      let navigationContent = md.$refs.navigationContent;
+      navigationContent.innerHTML = md.d_render
+      let nodes = navigationContent.children;
+      if (nodes.length) {
+        let navigationStr = '<div>';
+        for (let i = 0; i < nodes.length; i++) {
+            if (reg.exec(nodes[i].tagName)) {
+              navigationStr += nodes[i].outerHTML;
+              console.log(nodes[i].outerHTML);
+            }
+        }
+        navigationStr += '</div>';
+        console.log(navigationStr);
+      }
     }
   },
   mounted() {

@@ -31,7 +31,7 @@
             return{
                 articles: [],
                 blogTotal:0,
-                pageSize:3,
+                pageSize:20,
                 currentPage:1,
             }
         },
@@ -44,11 +44,11 @@
                     page:this.currentPage,
                     size:this.pageSize,
                 }).then(data => {
-                this.articles = data.data.list;
-                this.blogTotal = data.data.total;
-                this.$nextTick(() => {
-                        this.$parent.$parent.resizeBody()
-                })
+                    this.articles = data.data.list;
+                    this.blogTotal = data.data.total;
+                    this.$nextTick(() => {
+                            this.$parent.$parent.resizeBody()
+                    })
                 })
             }
         }
