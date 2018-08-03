@@ -1,1 +1,1 @@
-export const backHost = 'http://dukehu.top:9000';
+export const backHost = 'http://localhost:9000';

@@ -144,10 +144,9 @@ export default {
         }
       });
       let md = this.$refs.md;
-      console.log(md);
       let mdContent = md.d_value;
       let htmlContent = md.d_render;
-      this.getNavigation(md);
+      console.log(this.getNavigation(md));
       if (!mdContent) {
         // 没有写内容
       }
@@ -193,17 +192,15 @@ export default {
       let navigationContent = md.$refs.navigationContent;
       navigationContent.innerHTML = md.d_render
       let nodes = navigationContent.children;
+      let navigationStr = '';
       if (nodes.length) {
-        let navigationStr = '<div>';
         for (let i = 0; i < nodes.length; i++) {
             if (reg.exec(nodes[i].tagName)) {
               navigationStr += nodes[i].outerHTML;
-              console.log(nodes[i].outerHTML);
             }
         }
-        navigationStr += '</div>';
-        console.log(navigationStr);
       }
+      return navigationStr;
     }
   },
   mounted() {
