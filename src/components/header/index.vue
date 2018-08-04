@@ -86,9 +86,7 @@ export default {
     handleLogin() {
         this.$refs.login.validate(valid => {
             if(valid) {
-              console.log(this.form.username);
-              console.log(this.form.password);
-              this.$axios('post','/api/auth/login',{
+              this.$axios('post','/api/auth/sign_in',{
                   username:this.form.username,
                   password:this.form.password,
               }).then(data => {

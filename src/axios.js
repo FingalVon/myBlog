@@ -9,6 +9,9 @@ axios.defaults.timeout = 2*60*1000;
 // 配置后端地址
 axios.defaults.baseURL = backHost;
 
+// 前端发请求的时候携带cookie，目前只知道这么做，后续有好的方案在改进
+axios.defaults.withCredentials = true;
+
 // 请求拦截器
 axios.interceptors.request.use(request => {
     //发送请求之前做点什么
