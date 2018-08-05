@@ -1,7 +1,11 @@
 <template>
     <div class="t-header">
         <el-button v-for="(btn,i) in btnList" :key="btn.router" type="text" :class="{active:!!activeBtn[i]}" @click="handleClick(btn.router)">{{btn.name}}</el-button>
-        <el-button type="text" @click="openLogin" style="float:right;margin-top:20px">登录</el-button>
+        <el-button v-if="!alreadyLogin" type="text" @click="openLogin" style="float:right;margin-top:15px">登录</el-button>
+        <div v-else class="float-right" title="进入个人中心" style="cursor:pointer">
+          <h3 class="blog-name">{{userInfo.blogName}}</h3>
+          <img :src="imgUrl" />
+        </div>
         <el-dialog title="登录" :visible.sync="showLoginDialog" :append-to-body="true" :center="true" :modal="true" width="450px" :show-close="false" :close-on-click-modal="true">
             <el-form ref="login" :model="form" :rules="rules">
                 <el-form-item label="用户名" prop="username">
@@ -24,6 +28,7 @@ export default {
   data() {
     return {
       showLoginDialog: false,
+      alreadyLogin:true,
       btnList: [
         {
           name: "首页",
@@ -47,6 +52,10 @@ export default {
         }
       ],
       activeBtn: [],
+      imgUrl: "static/favicon.ico",
+      userInfo:{
+        blogName:'我的博客'
+      },
       form: {
         username: "",
         password: ""
@@ -59,11 +68,21 @@ export default {
       }
     };
   },
-  created() {
-    for (let v of this.btnList) {
-      if (v.router == this.$route.path) this.activeBtn.push(1);
-      else this.activeBtn.push(0);
+  watch:{
+    '$route.fullPath': {
+      handler: function(n) {
+        this.$nextTick(() => {
+          for (let v of this.btnList) {
+            if (v.router == n) this.activeBtn.push(1);
+            else this.activeBtn.push(0);
+          }
+        })
+      },
+      immediate: true
     }
+  },
+  created() {
+
   },
   methods: {
     handleClick(router) {
@@ -101,14 +120,14 @@ export default {
 
 <style scoped>
 .t-header {
-  position: fixed;
+  position: absolute;
   width: 100%;
-  height: 80px;
-  top: -70px;
+  height: 70px;
+  top: 0;
   left: 0;
   z-index: 10;
   text-align: left;
-  line-height: 80px;
+  line-height: 70px;
   padding: 0 60px 0 100px;
   box-sizing: border-box;
   background-color: #444;
@@ -130,8 +149,20 @@ export default {
 .t-header button.active:hover {
   color: #50aeff;
 }
-.t-header:hover {
+/* .t-header:hover {
   top: 0;
+} */
+.t-header img {
+  height:40px;
+  width:40px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.blog-name {
+  display:inline-block;
+  color:#ddd;
+  margin:0 10px;
+  vertical-align: middle;
 }
 
 .float-right {

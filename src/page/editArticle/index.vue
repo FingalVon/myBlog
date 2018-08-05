@@ -1,5 +1,5 @@
 <template>
-  <div id="editor">
+  <div id="editor" :style="{width:$store.state.bodyWidth>1200?($store.state.bodyWidth > 1600 ? '1200px' : '900px'):'750px'}">
     <el-form :model="blogArticle" :rules="blogArticleRules" ref="blogArticle" label-width="70px">
       <el-form-item label="标题：" prop="title">
         <el-input
@@ -36,7 +36,7 @@
       </el-form-item>
     </el-form>
 
-    <mavon-editor style="height: 80%" @save="save" @imgAdd="imgAdd" ref="md" :ishljs="true"/>
+    <mavon-editor style="height: 100%" @save="save" @imgAdd="imgAdd" ref="md" :ishljs="true"/>
     <el-button style="margin-top: 20px; float:right" type="primary" @click="onSubmit('blogArticle')">发布</el-button>
   </div>
 </template>

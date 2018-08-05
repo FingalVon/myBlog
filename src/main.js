@@ -7,7 +7,7 @@ import ElementUI from 'element-ui';
 import axios from './axios.js';
 import 'element-ui/lib/theme-chalk/index.css';
 import Vuex from 'vuex';
-import './css/mavon-editor.styl';
+import 'mavon-editor/src/lib/css/mavon-editor.styl';
 // import VueContextMenu from 'vue-contextmenu'
 // import 'vue-contextmenu/style/css/font-awesome.min.css'
 
@@ -26,12 +26,14 @@ const store = new Vuex.Store({
     bodyWidth:0,
     bodyHeight:0,
     imgH:'30px',
+    scrollTop:0,
   },
   mutations: {
     windowChange(state,obj) {
-      state.bodyHeight = obj.bodyHeight;
-      state.bodyWidth = obj.bodyWidth;
-      state.imgH = obj.imgH;
+      if(obj.hasOwnProperty('bodyHeight')) state.bodyHeight = obj.bodyHeight;
+      if(obj.hasOwnProperty('bodyWidth')) state.bodyWidth = obj.bodyWidth;
+      if(obj.hasOwnProperty('imgH')) state.imgH = obj.imgH;
+      if(obj.hasOwnProperty('scrollTop')) state.scrollTop = obj.scrollTop;
     }
   }
 })

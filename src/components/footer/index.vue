@@ -13,7 +13,6 @@
 <style scoped>
   .footer {
     position: absolute;
-    top:auto;
     bottom: 0;
     left: 0;
     height: 40px;

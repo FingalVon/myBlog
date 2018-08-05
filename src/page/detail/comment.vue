@@ -93,6 +93,6 @@
   .box-card {
     text-align: left;
     margin: 50px auto 30px auto; /*上、右、下、左、*/
-    width: 80%;
+    width: 100%;
   }
 </style>

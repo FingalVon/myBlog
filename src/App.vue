@@ -33,19 +33,14 @@ export default {
     '$route.fullPath': {
       handler: function(n) {
         this.hideLeft = false;
-        if(n == '/' || n == '/detail') {
-          this.$nextTick(() => {
-            this.resizeBody();
-          })
-        };
+        this.$nextTick(() => {
+          this.resizeBody();
+        })
       },
       immediate: true
     }
   },
   mounted() {
-      this.$nextTick(() => {
-        this.resizeBody();
-      })
       window.onresize = () => {
         if(!this.resizeOver) return;
         return (() => {
@@ -56,22 +51,32 @@ export default {
           },50)
         })();
       };
+      window.onscroll = () => {
+        if(!this.resizeOver) return;
+        return (() => {
+          this.resizeOver = false;
+          this.resizeBody();
+          setTimeout(() => {
+              this.resizeOver = true;
+          },50)
+        })();
+      }
   },
   methods:{
     resizeBody() {
-      this.screenHeight = document.documentElement.clientHeight;
       let bodyH = document.getElementById('bodyRight').offsetHeight || 0;
       let footerH = document.getElementById('footerPage').offsetHeight || 0;
-      let sBodyH = document.documentElement.clientHeight > bodyH ? document.documentElement.clientHeight - 20 - footerH : bodyH;
+      let sBodyH = document.documentElement.clientHeight > bodyH ? document.documentElement.clientHeight - footerH : bodyH + 20;
       let sBodyW = document.documentElement.clientWidth || 0;
       let sImgH = (document.getElementById('iCard-img') ? document.getElementById('iCard-img').clientWidth : sBodyW * 0.3 * 0.8 * 0.4 ) + 'px';
       this.$store.commit('windowChange',{
         bodyHeight:sBodyH,
         bodyWidth:sBodyW,
         imgH:sImgH,
+        scrollTop:document.documentElement.scrollTop || document.body.scrollTop
       })
       this.bodyHeight = sBodyH;
-      document.getElementById('footerPage').style.top = sBodyH + 20 + 'px';
+      document.getElementById('footerPage').style.top = sBodyH + 'px';
     }
   }
 }

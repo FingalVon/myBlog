@@ -47,7 +47,7 @@
                     this.articles = data.data.list;
                     this.blogTotal = data.data.total;
                     this.$nextTick(() => {
-                            this.$parent.$parent.resizeBody()
+                        this.$parent.$parent.resizeBody()
                     })
                 })
             }
@@ -58,7 +58,6 @@
     .blog-list {
         width:100%;
         box-sizing: border-box;
-        padding: 0 80px;
     }
 </style>
 

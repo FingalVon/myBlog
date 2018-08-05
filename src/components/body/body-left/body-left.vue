@@ -1,6 +1,6 @@
 <template>
-    <div class="body-left" id="bodyLeft" :style="{height:bodyLeftH}">
-        <i-card></i-card>
+    <div class="body-left" id="bodyLeft" v-show="showLeft">
+        <!-- <i-card></i-card> -->
         <recently-article></recently-article>
     </div>
 </template>
@@ -11,13 +11,16 @@
         components:{iCard,recentlyArticle},
         data() {
             return {
-                bodyLeftH: '100%',
+                showLeft:true
             }
         },
-        mounted() {
-            this.$nextTick(() => {
-                this.bodyLeftH = document.getElementById('bodyLeft').offsetHeight + 40 + 'px';
-            })
+        watch:{
+            '$route.fullPath':{
+                handler(n) {
+                    this.showLeft = n == '/'
+                },
+                immediate:true
+            }
         },
     }
 </script>
@@ -25,8 +28,7 @@
     .body-left {
         float:left;
         position:fixed;
-        left:0;
-        padding-top:30px;
+        width:140px;
         /* box-sizing: border-box; */
         background-color: #fff;
         box-shadow: 2px -2px 10px 0 rgba(0,0,0,.1);

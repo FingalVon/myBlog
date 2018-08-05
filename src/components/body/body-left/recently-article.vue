@@ -1,9 +1,12 @@
 <template>
   <div class="recentlyArticle">
     <el-input
-      style="margin-bottom: 25px; width: 80%"
-      placeholder="输入关键字搜索"
+      class="hover100"
+      placeholder="搜索文章"
+      @mouseenter.native="getFocus"
+      @mouseleave.native="loseFocus"
       prefix-icon="el-icon-search"
+      size="mini"
       v-model="keyWord"></el-input>
     <div style="font-size: 20px; font-weight: bolder">近期文章</div>
     <ul style="padding-left: 5px; padding-right:20%;">
@@ -22,14 +25,23 @@
       return {
         keyWord:'',
       }
+    },
+    methods:{
+      getFocus() {
+        document.getElementsByClassName("hover100")[0].getElementsByTagName("input")[0].focus();
+      },
+      loseFocus() {
+        document.getElementsByClassName("hover100")[0].getElementsByTagName("input")[0].blur();
+      }
     }
   }
 </script>
 
 <style scoped>
   .recentlyArticle {
-    width: 70%;
-    margin: auto auto auto 24%;
+    width: 100%;
+    padding:10px;
+    box-sizing:border-box;
     text-align: left;
   }
 
@@ -38,5 +50,13 @@
     font-size: 17px;
     padding: 6px;
     border-bottom: 1px solid rgba(73, 82, 96, 0.21);
+  }
+  .hover100 {
+    margin-bottom: 10px; 
+    width: 45px;
+    transition: width .5s;
+  }
+  .hover100:hover {
+    width:100%;
   }
 </style>

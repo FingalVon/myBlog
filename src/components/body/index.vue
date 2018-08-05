@@ -1,7 +1,7 @@
 <template>
-    <div class="body-content" :style="{height:bodyHeight ? bodyHeight+'px' : bodyHeight}">
-        <body-left :style="{width:leftWidth+'px'}" v-if="bodyWidth > 900"></body-left>
-        <div class="body-right" id="bodyRight" :style="{width:bodyWidth>900?bodyWidth - leftWidth - 10 + 'px':'100%', 'margin-left':(bodyWidth>900 && !hideLeft)?leftWidth+10+'px':'0'}">
+    <div class="body-content" :style="{height:$store.state.bodyHeight ? $store.state.bodyHeight+'px' : $store.state.bodyHeight}">
+        <body-left :style="{left:($store.state.bodyWidth - ($store.state.bodyWidth>1200?($store.state.bodyWidth > 1600 ? 1200 : 900):750)) / 2 - 150 + 'px',top:$store.state.scrollTop > 70 ? '10px' : 90 - $store.state.scrollTop + 'px'}" v-if="$store.state.bodyWidth > 900"></body-left>
+        <div class="body-right" id="bodyRight" :style="{width:$store.state.bodyWidth>1200?($store.state.bodyWidth > 1600 ? '1200px' : '900px'):'750px'}">
             <slot name="bodyright"></slot>
         </div>
     </div>
@@ -16,25 +16,6 @@ export default {
       default: false
     },
   },
-
-  watch: {
-    "$store.state": {
-      handler: function(n) {
-        this.bodyHeight = n.bodyHeight;
-        this.bodyWidth = n.bodyWidth;
-        this.leftWidth = n.bodyWidth * 0.3 > 400 ? 400 : n.bodyWidth * 0.3;
-      },
-      immediate: true,
-      deep: true
-    }
-  },
-  data() {
-    return {
-        bodyHeight:'auto',
-        bodyWidth:901,
-        leftWidth:380,
-    };
-  },
   methods: {}
 };
 </script>
@@ -43,18 +24,18 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  top: 12px;
+  top:0;
+  padding-bottom:20px !important;
   z-index: 1;
   padding: 0 10px;
   box-sizing: border-box;
   background-color: #eeeeee;
 }
 .body-right {
-  position: absolute;
-  left:0;
   width: 100%;
+  margin:auto;
   height: auto;
-  padding-top: 30px;
+  padding-top: 80px;
   box-sizing: border-box;
   background-color: #eeeeee;
 }
