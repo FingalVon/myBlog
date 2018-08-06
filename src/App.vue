@@ -52,14 +52,15 @@ export default {
         })();
       };
       window.onscroll = () => {
-        if(!this.resizeOver) return;
-        return (() => {
-          this.resizeOver = false;
           this.resizeBody();
-          setTimeout(() => {
-              this.resizeOver = true;
-          },50)
-        })();
+        // if(!this.resizeOver) return;
+        // return (() => {
+        //   this.resizeOver = false;
+        //   this.resizeBody();
+        //   setTimeout(() => {
+        //       this.resizeOver = true;
+        //   },50)
+        // })();
       }
   },
   methods:{
