@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       showLoginDialog: false,
-      alreadyLogin: true,
+      alreadyLogin: false,
       firstMaxWidth: 0,
       tempWidth:0,
       btnList: [
@@ -145,7 +145,9 @@ export default {
       immediate: true
     }
   },
-  created() {},
+  created() {
+    this.getUserInfo();
+  },
   mounted() {
     for(let i = 0; i < this.btnList.length; i++) {
       if(this.btnList[i].children && this.btnList[i].children.length) {
@@ -166,7 +168,6 @@ export default {
         let _maxWidth = 0;
         for(let _val of _arr) {
           let _contentEl = _val.getElementsByTagName('span')[0];
-          console.log(_contentEl.clientWidth)
           _val.style.opacity = 0;
           _val.style.display = 'inline-block';
           _maxWidth = _contentEl.clientWidth > _maxWidth ? _contentEl.clientWidth : _maxWidth;
@@ -174,7 +175,6 @@ export default {
           _val.style.opacity = 1;
         }
         this.btnList[index].children[i].maxWidth = _maxWidth;
-        console.log(">>>>>>>>>>",_maxWidth)
         val.style.display = 'none';
         val.style.opacity = 1;
         i++;
@@ -196,16 +196,29 @@ export default {
       });
     },
     handleLogin() {
-      this.$refs.login.validate(valid => {
-        if (valid) {
-          this.$axios("post", "/api/auth/sign_in", {
-            username: this.form.username,
-            password: this.form.password
-          }).then(data => {
-            console.log(data);
-          });
+        this.$refs.login.validate(valid => {
+            if(valid) {
+              this.$axios('post','/api/auth/sign_in',{
+                  username:this.form.username,
+                  password:this.form.password,
+              }).then(data => {
+                  this.showLoginDialog = false;
+                  this.alreadyLogin = true;
+                  console.log(data);
+                  // this.userInfo.blogName = "duke";
+                  // getUserInfo();
+              })
+            }
+        })
+    },
+    getUserInfo() {
+      this.$axios('get','/api/admin/user/info').then(data => {
+        console.log(data)
+        if(data.status === 200) {
+          console.log(data);
+          this.userInfo.blogName = data.data.realName;
         }
-      });
+      })
     }
   }
 };
