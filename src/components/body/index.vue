@@ -1,6 +1,6 @@
 <template>
     <div class="body-content" :style="{height:$store.state.bodyHeight ? $store.state.bodyHeight+'px' : $store.state.bodyHeight}">
-        <body-left :style="{left:($store.state.bodyWidth - ($store.state.bodyWidth>1200?($store.state.bodyWidth > 1600 ? 1200 : 900):750)) / 2 - 150 + 'px',top:$store.state.scrollTop > 70 ? '10px' : 90 - $store.state.scrollTop + 'px'}" v-if="$store.state.bodyWidth > 900"></body-left>
+        <!-- <body-left :style="{left:($store.state.bodyWidth - ($store.state.bodyWidth>1200?($store.state.bodyWidth > 1600 ? 1200 : 900):750)) / 2 - 150 + 'px',top:$store.state.scrollTop > 70 ? '10px' : 90 - $store.state.scrollTop + 'px'}" v-if="$store.state.bodyWidth > 900"></body-left> -->
         <div class="body-right" id="bodyRight" :style="{width:$store.state.bodyWidth>1200?($store.state.bodyWidth > 1600 ? '1200px' : '900px'):'750px'}">
             <slot name="bodyright"></slot>
         </div>
