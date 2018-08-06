@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       showLoginDialog: false,
-      alreadyLogin:true,
+      alreadyLogin: false,
       btnList: [
         {
           name: "首页",
@@ -82,7 +82,9 @@ export default {
     }
   },
   created() {
-
+    //if(this.alreadyLogin) {
+      getUserInfo();
+    //}
   },
   methods: {
     handleClick(router) {
@@ -109,10 +111,23 @@ export default {
                   username:this.form.username,
                   password:this.form.password,
               }).then(data => {
+                  this.showLoginDialog = false;
+                  this.alreadyLogin = true;
                   console.log(data);
+                  // this.userInfo.blogName = "duke";
+                  // getUserInfo();
               })
             }
         })
+    },
+    getUserInfo() {
+      this.$axios('get','/api/admin/user/info').then(data => {
+        console.log(data)
+        if(data.status === 200) {
+          console.log(data);
+          this.userInfo.blogName = data.data.realName;
+        }
+      })
     }
   }
 };
