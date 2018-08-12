@@ -21,6 +21,10 @@ axios.interceptors.request.use(request => {
     //     title:'错误',
     //     message:'请求超时，请检查您的网络状况！'
     // });
+    Vue.$notify({
+        title:'错误',
+        message:'请求超时，请检查您的网络状况！'
+    })
     return Promise.reject(error);
 })
 

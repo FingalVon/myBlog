@@ -30,6 +30,9 @@ export default {
           imgH:'30px',
       }
   },
+  created() {
+    console.log("aaaaaaaaaaaaaa",document.cookie)
+  },
   watch:{
     '$route.fullPath': {
       handler: function(n) {

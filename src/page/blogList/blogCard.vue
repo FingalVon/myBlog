@@ -84,10 +84,10 @@
 </script>
 <style scoped>
     .blog-card {
-        height:400px;
+        height:240px;
         width:100%;
         margin-bottom:30px;
-        padding:40px 80px;
+        padding:10px 40px 20px;
         box-sizing: border-box;
         box-shadow: 0 0 8px rgba(100,100,100,.1);
     }

@@ -24,7 +24,7 @@
           </div>
         </div>
         <!-- <el-button v-for="(btn,i) in btnList" :key="btn.router" type="text" :class="{active:!!activeBtn[i]}" @click="handleClick(btn.router)">{{btn.name}}</el-button> -->
-        <el-button v-if="!alreadyLogin" type="text" @click="openLogin" style="float:right;margin-top:15px">登录</el-button>
+        <el-button v-if="!alreadyLogin" type="text" @click="openLogin" style="float:right;margin-top:15px; font-size:16px">登录</el-button>
         <div v-else class="float-right" style="cursor:pointer">
           <h3 class="blog-name" @click="handleClick('/')">{{userInfo.blogName}}</h3>
           <img title="进入个人中心" :src="userInfo.imgUrl" />
@@ -244,7 +244,7 @@ export default {
   line-height: 70px;
   padding: 0 60px 0 100px;
   box-sizing: border-box;
-  background-color: #444;
+  background-color: #192431;
   border-bottom: solid 1px #444;
   box-shadow: 0 0 8px #444;
   transition: top 0.5s;

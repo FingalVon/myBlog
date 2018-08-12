@@ -28,7 +28,7 @@
     .body-left {
         float:left;
         position:fixed;
-        width:140px;
+        left:200px;
         /* box-sizing: border-box; */
         background-color: #fff;
         box-shadow: 2px -2px 10px 0 rgba(0,0,0,.1);

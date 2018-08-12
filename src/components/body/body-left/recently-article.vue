@@ -6,10 +6,9 @@
       @mouseenter.native="getFocus"
       @mouseleave.native="loseFocus"
       prefix-icon="el-icon-search"
-      size="mini"
       v-model="keyWord"></el-input>
-    <div style="font-size: 20px; font-weight: bolder">近期文章</div>
-    <ul style="padding-left: 5px; padding-right:20%;">
+    <div style="font-size: 20px; font-weight: bolder; text-align:left; padding-left:5%">近期文章</div>
+    <ul style="padding-left: 10%; padding-right:10%; text-align:left">
       <li v-for="o in 5" :key="o" class="articleTitle">
         <a style="text-decoration: none; color: #333" href="www.baidu.com">{{ "近期文章" + o }}</a>
       </li>
@@ -42,10 +41,11 @@
     width: 100%;
     padding:10px;
     box-sizing:border-box;
-    text-align: left;
+    text-align: center;
   }
 
   .articleTitle {
+    line-height: 28px;
     list-style-type: none;
     font-size: 17px;
     padding: 6px;

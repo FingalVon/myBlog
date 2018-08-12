@@ -40,7 +40,7 @@
         },
         methods:{
             getList(){
-                this.$axios('get','/api/blog/blog_article',{
+                this.$axios('get','/api/blog/nologin/blog_article',{
                     page:this.currentPage,
                     size:this.pageSize,
                 }).then(data => {
