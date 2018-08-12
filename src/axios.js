@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { Notification } from 'element-ui';
+// import axios from 'axios';
+// import { Notification } from 'elementUI';
 import {backHost} from '../static/config.js'
 import Qs from 'qs';
 
@@ -17,10 +17,10 @@ axios.interceptors.request.use(request => {
     //发送请求之前做点什么
     return request;
 },error => {
-    Notification.error({
-        title:'错误',
-        message:'请求超时，请检查您的网络状况！'
-    });
+    // Notification.error({
+    //     title:'错误',
+    //     message:'请求超时，请检查您的网络状况！'
+    // });
     return Promise.reject(error);
 })
 

@@ -12,6 +12,11 @@ function resolve (dir) {
 
 
 module.exports = {
+  externals: {
+    'Vue':'Vue',
+    'element-ui': 'element-ui',
+    'axios':'axios',
+  },
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'

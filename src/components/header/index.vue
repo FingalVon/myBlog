@@ -29,15 +29,25 @@
           <h3 class="blog-name" @click="handleClick('/')">{{userInfo.blogName}}</h3>
           <img title="进入个人中心" :src="userInfo.imgUrl" />
         </div>
-        <el-dialog title="登录" :visible.sync="showLoginDialog" :append-to-body="true" :center="true" :modal="true" width="450px" :show-close="false" :close-on-click-modal="true">
+        <el-dialog title="登录" 
+          :visible.sync="showLoginDialog" 
+          :append-to-body="true" 
+          :center="true" 
+          :modal="true" 
+          width="450px" 
+          :show-close="false" 
+          :close-on-click-modal="true"
+          custom-class="dialog-style">
             <el-form ref="login" :model="form" :rules="rules">
                 <el-form-item label="用户名" prop="username">
-                    <el-input v-model="form.username" @keyup.enter.native="handleLogin"></el-input>
+                    <el-input name="accout" v-model="form.username" @keyup.enter.native="handleLogin"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
-                    <el-input type="password" v-model="form.password" @keyup.enter.native="handleLogin"></el-input>
+                    <el-input name="password" type="password" v-model="form.password" @keyup.enter.native="handleLogin"></el-input>
                 </el-form-item>
             </el-form>
+            <el-button type="text">忘记密码</el-button>
+            <el-button type="text">注册新用户</el-button>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="showLoginDialog = false">取 消</el-button>
                 <el-button type="primary" @click="handleLogin">确 定</el-button>
@@ -205,8 +215,6 @@ export default {
                   this.showLoginDialog = false;
                   this.alreadyLogin = true;
                   console.log(data);
-                  // this.userInfo.blogName = "duke";
-                  // getUserInfo();
               })
             }
         })

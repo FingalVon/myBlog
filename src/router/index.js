@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import Router from 'vue-router'
 import Detail from '@/page/detail/index'
 import BlogList from '@/page/blogList/index'
@@ -9,6 +8,7 @@ import ContextMenu from  '@/page/test/contextmenu'
 Vue.use(Router)
 
 export default new Router({
+  // mode: 'history',
   routes: [
     {
       path: '/',

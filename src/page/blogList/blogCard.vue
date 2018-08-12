@@ -1,6 +1,6 @@
 <template>
     <div style="margin: 10px auto;">
-        <el-card class="blog-card" v-if="!noblog">
+        <el-card name="blog-card" class="blog-card" v-if="!noblog">
             <div slot="header">
                 <el-row>
                     <el-col :span="20">

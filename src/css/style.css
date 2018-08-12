@@ -5,3 +5,7 @@ a,button,input {
 .el-button {
     margin-right: 10px !important;
 }
+
+.dialog-style .el-dialog__body{
+    padding-bottom:10px;
+  }

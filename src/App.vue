@@ -17,6 +17,7 @@
 import headerPage from './components/header/index.vue'
 import bodyPage from './components/body/index.vue'
 import footerPage from './components/footer/index.vue'
+// import axios from './axios.js';
 export default {
   components:{headerPage,bodyPage,footerPage},
   name: 'App',
@@ -53,14 +54,6 @@ export default {
       };
       window.onscroll = () => {
           this.resizeBody();
-        // if(!this.resizeOver) return;
-        // return (() => {
-        //   this.resizeOver = false;
-        //   this.resizeBody();
-        //   setTimeout(() => {
-        //       this.resizeOver = true;
-        //   },50)
-        // })();
       }
   },
   methods:{
